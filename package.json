@@ -1,0 +1,28 @@
+{
+  "name": "vefi-token",
+  "version": "1.0.0",
+  "description": "",
+  "main": "truffle-config.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "format": "prettier --write **/**/*.{js,json,sol}"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/VeFi-Network/VeFi-Token.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/VeFi-Network/VeFi-Token/issues"
+  },
+  "homepage": "https://github.com/VeFi-Network/VeFi-Token#readme",
+  "dependencies": {
+    "@openzeppelin/contracts": "^4.3.2",
+    "@truffle/hdwallet-provider": "^1.5.0"
+  }
+}
