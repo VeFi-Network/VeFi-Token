@@ -24,11 +24,18 @@ contract Token is Context, Ownable, ERC20 {
     _mint(_msgSender(), amount_);
   }
 
-  /** @dev adds a minter. Can only be called by contract owner
-   *  @param _minter The address that's added as a minter
+  /** @dev Adds a minter. Can only be called by contract owner
+   *  @param _minter The address that's added as minter
    */
   function addMinter(address _minter) external onlyOwner {
     _minters[_minter] = true;
+  }
+
+  /** @dev Removes a minter. Can only be called by contract owner
+   *  @param _minter The address that's removed as minter
+   */
+  function removeMinter(address _minter) external onlyOwner() {
+    _minters[_minter] = false;
   }
 
   /** @dev Mints tokens for a specific address. Can only be called by a minter
