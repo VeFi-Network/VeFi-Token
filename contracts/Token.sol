@@ -34,7 +34,7 @@ contract Token is Context, Ownable, ERC20 {
   /** @dev Removes a minter. Can only be called by contract owner
    *  @param _minter The address that's removed as minter
    */
-  function removeMinter(address _minter) external onlyOwner() {
+  function removeMinter(address _minter) external onlyOwner {
     _minters[_minter] = false;
   }
 
