@@ -11,7 +11,7 @@ contract Token is Context, Ownable, ERC20 {
   modifier onlyMinter() {
     require(
       _minters[_msgSender()],
-      "VeFi: Only minter is allowed to mint tokens"
+      "VeFi: Only minter is allowed to mint or burn tokens"
     );
     _;
   }
