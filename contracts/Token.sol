@@ -1,6 +1,7 @@
 pragma solidity ^0.8.0;
 
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
+import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import "@openzeppelin/contracts/utils/Context.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 
@@ -52,5 +53,34 @@ contract Token is Context, Ownable, ERC20 {
    */
   function burnFor(address _account, uint256 _amount) external onlyMinter {
     _burn(_account, _amount);
+  }
+
+  /** @dev Return tokens or BNB sent to contract to specified recipient
+   *  @param _token The address of the ERC20 token. If zero address, represents BNB
+   *  @param _recipient The address to send asset to
+   *  @param _amount The amount to send
+   */
+  function retrieveERC20OrBNB(
+    address _token,
+    address _recipient,
+    uint256 _amount
+  ) external onlyOwner {
+    require(_recipient != address(0), "VeFi: Sending to zero address");
+
+    if (_token == address(0)) {
+      uint256 _balance = address(this).balance;
+      address payable recipient_ = payable(_recipient);
+      require(_balance >= _amount, "VeFi: Not enough balance");
+      recipient_.transfer(_amount);
+    } else {
+      require(
+        IERC20(_token).balanceOf(address(this)) >= _amount,
+        "VeFi: Not enough tokens"
+      );
+      require(
+        IERC20(_token).transfer(_recipient, _amount),
+        "VeFi: Unable to transfer tokens"
+      );
+    }
   }
 }
