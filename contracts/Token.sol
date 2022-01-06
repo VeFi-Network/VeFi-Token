@@ -52,12 +52,12 @@ contract Token is Context, Ownable, ERC20 {
     _burn(_account, _amount);
   }
 
-  /** @dev Return tokens or BNB sent to contract to specified recipient
-   *  @param _token The address of the ERC20 token. If zero address, represents BNB
+  /** @dev Return tokens or Ether sent to contract to specified recipient
+   *  @param _token The address of the ERC20 token. If zero address, represents Ether
    *  @param _recipient The address to send asset to
    *  @param _amount The amount to send
    */
-  function retrieveERC20OrBNB(
+  function retrieveERC20OrEther(
     address _token,
     address _recipient,
     uint256 _amount
