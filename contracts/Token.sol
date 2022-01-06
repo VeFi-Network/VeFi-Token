@@ -1,19 +1,16 @@
 pragma solidity ^0.8.0;
 
-import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
-import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
-import "@openzeppelin/contracts/utils/Context.sol";
-import "@openzeppelin/contracts/access/Ownable.sol";
+import '@openzeppelin/contracts/token/ERC20/ERC20.sol';
+import '@openzeppelin/contracts/token/ERC20/IERC20.sol';
+import '@openzeppelin/contracts/utils/Context.sol';
+import '@openzeppelin/contracts/access/Ownable.sol';
 
 /** @author Kingsley Victor */
 contract Token is Context, Ownable, ERC20 {
   mapping(address => bool) _minters;
 
   modifier onlyMinter() {
-    require(
-      _minters[_msgSender()],
-      "VeFi: Only minter is allowed to mint or burn tokens"
-    );
+    require(_minters[_msgSender()], 'VeFi: Only minter is allowed to mint or burn tokens');
     _;
   }
 
@@ -65,22 +62,16 @@ contract Token is Context, Ownable, ERC20 {
     address _recipient,
     uint256 _amount
   ) external onlyOwner {
-    require(_recipient != address(0), "VeFi: Sending to zero address");
+    require(_recipient != address(0), 'VeFi: Sending to zero address');
 
     if (_token == address(0)) {
       uint256 _balance = address(this).balance;
       address payable recipient_ = payable(_recipient);
-      require(_balance >= _amount, "VeFi: Not enough balance");
+      require(_balance >= _amount, 'VeFi: Not enough balance');
       recipient_.transfer(_amount);
     } else {
-      require(
-        IERC20(_token).balanceOf(address(this)) >= _amount,
-        "VeFi: Not enough tokens"
-      );
-      require(
-        IERC20(_token).transfer(_recipient, _amount),
-        "VeFi: Unable to transfer tokens"
-      );
+      require(IERC20(_token).balanceOf(address(this)) >= _amount, 'VeFi: Not enough tokens');
+      require(IERC20(_token).transfer(_recipient, _amount), 'VeFi: Unable to transfer tokens');
     }
   }
 }

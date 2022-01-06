@@ -18,9 +18,9 @@
  *
  */
 
-require("dotenv").config();
+require('dotenv').config();
 
-const HDWalletProvider = require("@truffle/hdwallet-provider");
+const HDWalletProvider = require('@truffle/hdwallet-provider');
 
 module.exports = {
   /**
@@ -75,7 +75,7 @@ module.exports = {
       provider: () =>
         new HDWalletProvider(
           process.env.PRIVATE_KEY,
-          "https://speedy-nodes-nyc.moralis.io/558120230227a848a2bb7043/bsc/testnet"
+          'https://speedy-nodes-nyc.moralis.io/558120230227a848a2bb7043/bsc/testnet'
         ),
       network_id: 97,
       confirmations: 2,
@@ -86,7 +86,7 @@ module.exports = {
       provider: () =>
         new HDWalletProvider(
           process.env.PRIVATE_KEY,
-          "https://speedy-nodes-nyc.moralis.io/558120230227a848a2bb7043/bsc/mainnet"
+          'https://speedy-nodes-nyc.moralis.io/558120230227a848a2bb7043/bsc/mainnet'
         ),
       network_id: 56,
       confirmations: 2,
@@ -104,7 +104,7 @@ module.exports = {
   // Configure your compilers
   compilers: {
     solc: {
-      version: "0.8.7"
+      version: '0.8.7'
     }
   },
 
