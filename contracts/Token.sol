@@ -26,6 +26,7 @@ contract Token is Context, Ownable, ERC20 {
    *  @param _minter The address that's added as minter
    */
   function addMinter(address _minter) external onlyOwner {
+    require(!_minters[_minter], 'VeFi: Already a minter');
     _minters[_minter] = true;
   }
 
@@ -33,6 +34,7 @@ contract Token is Context, Ownable, ERC20 {
    *  @param _minter The address that's removed as minter
    */
   function removeMinter(address _minter) external onlyOwner {
+    require(_minters[_minter], 'VeFi: Not a minter');
     _minters[_minter] = false;
   }
 

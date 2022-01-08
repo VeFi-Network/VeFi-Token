@@ -74,8 +74,8 @@ module.exports = {
     bsc_testnet: {
       provider: () =>
         new HDWalletProvider(
-          process.env.PRIVATE_KEY,
-          'https://speedy-nodes-nyc.moralis.io/558120230227a848a2bb7043/bsc/testnet'
+          [process.env.PRIVATE_KEY],
+          'wss://speedy-nodes-nyc.moralis.io/558120230227a848a2bb7043/bsc/testnet/ws'
         ),
       network_id: 97,
       confirmations: 2,
@@ -84,15 +84,15 @@ module.exports = {
     },
     bsc_mainnet: {
       provider: () =>
-        new HDWalletProvider(
-          process.env.PRIVATE_KEY,
-          'https://speedy-nodes-nyc.moralis.io/558120230227a848a2bb7043/bsc/mainnet'
-        ),
+        new HDWalletProvider({
+          privateKeys: [process.env.PRIVATE_KEY],
+          providerOrUrl: 'wss://speedy-nodes-nyc.moralis.io/558120230227a848a2bb7043/bsc/mainnet/ws'
+        }),
       network_id: 56,
       confirmations: 2,
-      timeoutBlocks: 20000,
+      timeoutBlocks: 200000,
       skipDryRun: true,
-      networkCheckTimeout: 20000
+      networkCheckTimeout: 200000
     }
   },
 
@@ -104,7 +104,7 @@ module.exports = {
   // Configure your compilers
   compilers: {
     solc: {
-      version: '0.8.7'
+      version: '0.8.10'
     }
   },
 
