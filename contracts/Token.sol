@@ -10,7 +10,7 @@ contract Token is Context, Ownable, ERC20 {
   mapping(address => bool) _minters;
 
   modifier onlyMinter() {
-    require(_minters[_msgSender()], 'VeFi: Only minter is allowed to mint or burn tokens');
+    require(_minters[_msgSender()], 'vefi: only minter is allowed to mint or burn tokens');
     _;
   }
 
@@ -26,7 +26,7 @@ contract Token is Context, Ownable, ERC20 {
    *  @param _minter The address that's added as minter
    */
   function addMinter(address _minter) external onlyOwner {
-    require(!_minters[_minter], 'VeFi: Already a minter');
+    require(!_minters[_minter], 'vefi: already a minter');
     _minters[_minter] = true;
   }
 
@@ -34,7 +34,7 @@ contract Token is Context, Ownable, ERC20 {
    *  @param _minter The address that's removed as minter
    */
   function removeMinter(address _minter) external onlyOwner {
-    require(_minters[_minter], 'VeFi: Not a minter');
+    require(_minters[_minter], 'vefi: not a minter');
     _minters[_minter] = false;
   }
 
@@ -64,16 +64,18 @@ contract Token is Context, Ownable, ERC20 {
     address _recipient,
     uint256 _amount
   ) external onlyOwner {
-    require(_recipient != address(0), 'VeFi: Sending to zero address');
+    require(_recipient != address(0), 'vefi: sending to zero address');
 
     if (_token == address(0)) {
       uint256 _balance = address(this).balance;
       address payable recipient_ = payable(_recipient);
-      require(_balance >= _amount, 'VeFi: Not enough balance');
+      require(_balance >= _amount, 'vefi: not enough balance');
       recipient_.transfer(_amount);
     } else {
-      require(IERC20(_token).balanceOf(address(this)) >= _amount, 'VeFi: Not enough tokens');
-      require(IERC20(_token).transfer(_recipient, _amount), 'VeFi: Unable to transfer tokens');
+      require(IERC20(_token).balanceOf(address(this)) >= _amount, 'vefi: not enough tokens');
+      require(IERC20(_token).transfer(_recipient, _amount), 'vefi: unable to transfer tokens');
     }
   }
+
+  receive() external payable {}
 }

@@ -70,30 +70,6 @@ module.exports = {
     // network_id: 2111,   // This network is yours, in the cloud.
     // production: true    // Treats this network as if it was a public net. (default: false)
     // }
-
-    bsc_testnet: {
-      provider: () =>
-        new HDWalletProvider(
-          [process.env.PRIVATE_KEY],
-          'wss://speedy-nodes-nyc.moralis.io/558120230227a848a2bb7043/bsc/testnet/ws'
-        ),
-      network_id: 97,
-      confirmations: 2,
-      timeoutBlocks: 20000,
-      skipDryRun: true
-    },
-    bsc_mainnet: {
-      provider: () =>
-        new HDWalletProvider({
-          privateKeys: [process.env.PRIVATE_KEY],
-          providerOrUrl: 'wss://speedy-nodes-nyc.moralis.io/558120230227a848a2bb7043/bsc/mainnet/ws'
-        }),
-      network_id: 56,
-      confirmations: 2,
-      timeoutBlocks: 200000,
-      skipDryRun: true,
-      networkCheckTimeout: 200000
-    }
   },
 
   // Set default mocha options here, use special reporters etc.
