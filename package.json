@@ -10,8 +10,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "format": "prettier --write **/**/*.{js,json,sol}",
     "flatten": "truffle-flattener contracts/Token.sol > FlatToken.sol",
-    "deploy:bsctestnet": "truffle migrate --network bsc_testnet",
-    "deploy:bscmainnet": "truffle migrate --network bsc_mainnet"
+    "deploy:brisemainnet": "truffle migrate --network brisechain_mainnet"
   },
   "repository": {
     "type": "git",

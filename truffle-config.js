@@ -70,6 +70,18 @@ module.exports = {
     // network_id: 2111,   // This network is yours, in the cloud.
     // production: true    // Treats this network as if it was a public net. (default: false)
     // }
+    brisechain_mainnet: {
+      provider: () =>
+        new HDWalletProvider({
+          privateKeys: [process.env.PRIVATE_KEY],
+          providerOrUrl: 'https://mainnet-rpc.brisescan.com'
+        }),
+      network_id: 32520,
+      confirmations: 2,
+      timeoutBlocks: 200000,
+      skipDryRun: true,
+      networkCheckTimeout: 200000
+    }
   },
 
   // Set default mocha options here, use special reporters etc.
